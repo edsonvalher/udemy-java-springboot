@@ -9,6 +9,17 @@
 <body>
 	<h1>hello!! <span th:text="${person.name}"></span></h1>
 	<h3>Age <span th:text="${person.age}"></span></h3>
+
+	<table>
+		<thead>
+			<th>NAME</th>
+			<th>AGE</th>
+		</thead>
+		<tbody th:each="person : ${persons}">
+			<td><span th:text="${person.name}"></span></td>
+			<td><span th:text="${person.age}"></span></td>
+		</tbody>
+	</table>
 </body>
 
 </html>
