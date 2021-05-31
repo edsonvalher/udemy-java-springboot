@@ -16,7 +16,6 @@ public class ExampleController {
 
 	@GetMapping("/exampleString")
 	public String ExampleString(Model model) {
-		int i = 6 / 0;
 		model.addAttribute("person", new Person("Jon", 23));
 		return EXAMPLE_VIEW;
 	}
@@ -24,7 +23,6 @@ public class ExampleController {
 	@GetMapping("/exampleMAV")
 	public ModelAndView exampleMAV() {
 		ModelAndView mav = new ModelAndView(EXAMPLE_VIEW);
-		int i = 6 / 0;
 		mav.addObject("person", new Person("Mikel", 30));
 		return mav;
 	}
