@@ -1,6 +1,8 @@
 package com.udemy.controller;
 
+import com.udemy.converter.CourseConverter;
 import com.udemy.entity.Course;
+import com.udemy.model.CourseModel;
 import com.udemy.service.CourseService;
 
 import org.apache.commons.logging.Log;
@@ -27,6 +29,10 @@ public class CourseController {
     @Qualifier("courseServiceImpl")
     private CourseService courseService;
 
+    @Autowired
+    @Qualifier("courseConverter")
+    private CourseConverter courseConverter;
+
     @GetMapping("/listcourses")
     public ModelAndView listAllCourses() {
         LOG.info("CALL: " + "listAllCourses()");
@@ -37,7 +43,11 @@ public class CourseController {
     }
 
     @PostMapping("/addcourse")
-    public RedirectView addCourse(@ModelAttribute("course") Course course) {
+    public RedirectView addCourse(@ModelAttribute("course") CourseModel courseModel) {
+
+        Course course = new Course();
+        course = courseConverter.modelToentity(courseModel);
+
         LOG.info("CALL: " + "addCourse()" + " - PARAM: " + course.toString());
         courseService.addCourse(course);
         return new RedirectView("/courses/listcourses");
