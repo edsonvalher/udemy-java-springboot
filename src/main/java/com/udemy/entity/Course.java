@@ -111,4 +111,10 @@ public class Course {
         this.hours = hours;
     }
 
+    @Override
+    public String toString() {
+        return "Course [description=" + description + ", hours=" + hours + ", id=" + id + ", name=" + name + ", price="
+                + price + "]";
+    }
+
 }
